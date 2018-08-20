@@ -1,5 +1,6 @@
 <template>
 <div>
+    {{$t('test')}}
     <div>A:{{message}}</div>
     <el-button type="warning" @click='Achange'>change A</el-button>
     <div>B:{{info}}</div>

@@ -8,6 +8,7 @@ import router from './router'
 import axios from 'axios'
 
 import store from './store'
+import i18n from './language' // Internationalization
 
 Vue.use(ElementUI)
 Vue.prototype.$axios = axios
@@ -18,6 +19,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })

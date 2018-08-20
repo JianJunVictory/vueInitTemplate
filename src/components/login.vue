@@ -2,15 +2,15 @@
     <div>
     {{info}}
         <el-form :model="loginFrom" status-icon :rules="rules2" ref="loginFrom" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="密码" prop="email">
-            <el-input type="email" v-model="loginFrom.email" auto-complete="off"></el-input>
+        <el-form-item :label="$t('login.email')" prop="email">
+            <el-input type="email" v-model="loginFrom.email" auto-complete="off" :placeholder="$t('login.email')"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="password">
-            <el-input type="password" v-model="loginFrom.password" auto-complete="off"></el-input>
+        <el-form-item :label="$t('login.password')" prop="password">
+            <el-input type="password" v-model="loginFrom.password" auto-complete="off" :placeholder="$t('login.password')"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('loginFrom')">提交</el-button>
-            <el-button @click="resetForm('loginFrom')">重置</el-button>
+            <el-button type="primary" @click="submitForm('loginFrom')">{{$t('login.submit')}}</el-button>
+            <el-button @click="resetForm('loginFrom')">{{$t('login.reset')}}</el-button>
         </el-form-item>
         </el-form>
     </div>
@@ -58,10 +58,8 @@ export default {
   },
   methods: {
     submitForm (formName) {
-
     },
     resetForm (formName) {
-
     }
   },
   computed: {
