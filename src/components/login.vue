@@ -1,6 +1,5 @@
 <template>
     <div>
-    {{info}}
         <el-form :model="loginFrom" status-icon :rules="rules2" ref="loginFrom" label-width="100px" class="demo-ruleForm">
         <el-form-item :label="$t('login.email')" prop="email">
             <el-input type="email" v-model="loginFrom.email" auto-complete="off" :placeholder="$t('login.email')"></el-input>
@@ -17,14 +16,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import regExpUtil from '../utils/regExpUtil'
 export default {
   name: 'Login',
   data () {
     var validateEmail = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入手机号'))
+        if (this.$i18n.locale === 'zh') {
+          callback(new Error('请输入手机号'))
+        } else {
+          callback(new Error('please input phone'))
+        }
       } else if (!regExpUtil.isEmail(value)) {
         callback(new Error('请输入正确手机号'))
       } else {
@@ -58,14 +60,18 @@ export default {
   },
   methods: {
     submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     resetForm (formName) {
+      this.$refs[formName].resetFields()
     }
-  },
-  computed: {
-    ...mapState([
-      'info'
-    ])
   }
 }
 </script>
