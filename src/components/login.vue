@@ -62,7 +62,12 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          let email = this.loginFrom.email
+          let password = this.loginFrom.password
+          console.log(email, password)
+          if (email === 'enjoyass@outlook.com' && password === '12345678') {
+            this.$router.replace('/')
+          }
         } else {
           console.log('error submit!!')
           return false

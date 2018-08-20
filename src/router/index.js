@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Login from '@/components/Login'
-import Test from '@/components/test'
 
 Vue.use(Router)
 
@@ -10,17 +7,17 @@ const constantRouterMap = [
   {
     path: '/',
     name: 'HelloWorld',
-    component: HelloWorld
+    component: () => import('@/components/HelloWorld')
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('@/components/Login')
   },
   {
     path: '/test',
     name: 'Test',
-    component: Test
+    component: () => import('@/components/test')
   }
 ]
 export default new Router({

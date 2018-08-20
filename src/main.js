@@ -9,6 +9,7 @@ import axios from 'axios'
 
 import store from './store'
 import i18n from './language' // Internationalization
+import './permission' // permission control
 
 Vue.use(ElementUI)
 Vue.prototype.$axios = axios
