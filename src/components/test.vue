@@ -1,5 +1,6 @@
 <template>
 <div>
+  测试页面
     {{$t('test')}}
     <div>A:{{message}}</div>
     <el-button type="warning" @click='Achange'>change A</el-button>
