@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import UserApi from '../server/user'
+import UserApi from '@/server/user'
+import {SetToken} from '@/utils/auth'
 
 Vue.use(Vuex)
 const User = {
   actions: {
     doLogin ({commit}, user) {
       return UserApi.Login(user).then(response => {
+        let token = response.data.token
+        SetToken(token)
+        console.log(token)
         return response
       }).catch(err => {
         console.log(err)

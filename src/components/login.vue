@@ -66,11 +66,11 @@ export default {
         if (valid) {
           let email = this.loginFrom.email
           let password = this.loginFrom.password
-          console.log(email, password)
-          // let that = this
+          let that = this
           this.$store.dispatch('doLogin', {'email': email, 'password': password}).then(response => {
             if (response.status) {
               console.log(response)
+              that.$router.push('/')
             }
           })
         } else {
