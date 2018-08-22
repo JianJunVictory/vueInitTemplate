@@ -17,6 +17,7 @@
 
 <script>
 import regExpUtil from '../utils/regExpUtil'
+import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   data () {
@@ -45,8 +46,8 @@ export default {
     return {
       title: this.$store.state.info,
       loginFrom: {
-        email: '',
-        password: ''
+        email: 'jianjun@dappworks.cn',
+        password: '123456778'
       },
       rules2: {
         email: [
@@ -59,15 +60,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['doLogin']),
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let email = this.loginFrom.email
           let password = this.loginFrom.password
           console.log(email, password)
-          if (email === 'enjoyass@outlook.com' && password === '12345678') {
-            this.$router.replace('/')
-          }
+          // let that = this
+          this.$store.dispatch('doLogin', {'email': email, 'password': password}).then(response => {
+            if (response.status) {
+              console.log(response)
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
