@@ -1,20 +1,55 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import UserApi from '@/server/user'
-import {SetToken} from '@/utils/auth'
+import {SetToken, getToken, RemoveToken} from '@/utils/auth'
 
 Vue.use(Vuex)
 const User = {
+  state: {
+    token: getToken()
+  },
+  mutations: {
+    SET_TOKEN: (state, token) => {
+      state.token = token
+    }
+  },
   actions: {
     doLogin ({commit}, user) {
-      return UserApi.Login(user).then(response => {
-        let token = response.data.token
-        SetToken(token)
-        console.log(token)
-        return response
-      }).catch(err => {
-        console.log(err)
-        return err
+      return new Promise((resolve, reject) => {
+        UserApi.Login(user).then(response => {
+          let token = response.data.token
+          commit('SET_TOKEN', token)
+          SetToken(token)
+          resolve()
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+    doLogout ({commit}) {
+      return new Promise((resolve, reject) => {
+        UserApi.Logout().then(response => {
+          let resp = response.data
+          if (resp.code === 0) {
+            commit('SET_TOKEN', '')
+            RemoveToken()
+            resolve()
+          } else {
+            reject(resp.message)
+          }
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+    doTest () {
+      return new Promise((resolve, reject) => {
+        UserApi.Test().then(response => {
+          let resData = response.data
+          resolve(resData)
+        }).catch(error => {
+          reject(error)
+        })
       })
     }
   }

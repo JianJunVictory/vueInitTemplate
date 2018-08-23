@@ -28,12 +28,7 @@
         </a>
       </li>
       <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
+         <router-link to="/test" replace>Test</router-link>
       </li>
       <br>
       <li>

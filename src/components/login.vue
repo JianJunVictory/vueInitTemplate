@@ -47,7 +47,7 @@ export default {
       title: this.$store.state.info,
       loginFrom: {
         email: 'jianjun@dappworks.cn',
-        password: '123456778'
+        password: '12345678'
       },
       rules2: {
         email: [
@@ -67,11 +67,10 @@ export default {
           let email = this.loginFrom.email
           let password = this.loginFrom.password
           let that = this
-          this.$store.dispatch('doLogin', {'email': email, 'password': password}).then(response => {
-            if (response.status) {
-              console.log(response)
-              that.$router.push('/')
-            }
+          this.$store.dispatch('doLogin', {'email': email, 'password': password}).then(() => {
+            that.$router.push('/')
+          }).catch((err) => {
+            console.log(err)
           })
         } else {
           console.log('error submit!!')
