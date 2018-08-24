@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
-import {getToken} from '@/utils/auth'
+import Router from '@/router'
+import {getToken, RemoveToken} from '@/utils/auth'
 
 axios.interceptors.request.use(config => {
   if (store.state.User.token) {
@@ -13,6 +14,19 @@ axios.interceptors.request.use(config => {
   Promise.reject(error)
 })
 
+axios.interceptors.response.use(response => {
+  let rep = response.data
+  if (rep.code === -2001) {
+    RemoveToken()
+    Router.replace({path: '/login'})
+    return response
+  } else {
+    return response
+  }
+}, error => {
+  console.log('err' + error) // for debug
+  return Promise.reject(error)
+})
 function Login (user) {
   return axios({
     method: 'POST',

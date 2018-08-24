@@ -17,10 +17,15 @@ const User = {
     doLogin ({commit}, user) {
       return new Promise((resolve, reject) => {
         UserApi.Login(user).then(response => {
-          let token = response.data.token
-          commit('SET_TOKEN', token)
-          SetToken(token)
-          resolve()
+          let repData = response.data
+          if (repData.code === 0) {
+            let token = repData.data.token
+            commit('SET_TOKEN', token)
+            SetToken(token)
+            resolve()
+          } else {
+            reject(repData.message)
+          }
         }).catch(err => {
           reject(err)
         })
@@ -45,8 +50,12 @@ const User = {
     doTest () {
       return new Promise((resolve, reject) => {
         UserApi.Test().then(response => {
-          let resData = response.data
-          resolve(resData)
+          if (response.data.code === 0) {
+            let resData = response.data.data
+            resolve(resData)
+          } else {
+            reject(response.data.message)
+          }
         }).catch(error => {
           reject(error)
         })
