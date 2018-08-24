@@ -34,7 +34,13 @@ function Login (user) {
     data: user
   })
 }
-
+function Active (token) {
+  return axios({
+    method: 'POST',
+    url: '/active',
+    data: {'token': token}
+  })
+}
 function Logout () {
   return axios({
     method: 'POST',
@@ -50,5 +56,6 @@ function GetDB () {
 export default {
   Login: Login,
   Logout: Logout,
-  Test: GetDB
+  Test: GetDB,
+  Active: Active
 }

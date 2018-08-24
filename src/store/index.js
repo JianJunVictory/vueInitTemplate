@@ -60,6 +60,24 @@ const User = {
           reject(error)
         })
       })
+    },
+    doActive ({commit}, token) {
+      return new Promise((resolve, reject) => {
+        UserApi.Active(token).then(response => {
+          if (response.data.code === 0) {
+            let resData = response.data.data
+            if (resData.token) {
+              commit('SET_TOKEN', resData.token)
+              SetToken(token)
+            }
+            resolve()
+          } else {
+            reject(response.data.message)
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   }
 }

@@ -14,7 +14,9 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else { // not login status
-    if (to.fullPath === '/login') {
+    if (to.name === 'ActivePage') {
+      next()
+    } else if (to.fullPath === '/login') {
       next()
     } else {
       next('/login')

@@ -18,6 +18,11 @@ const constantRouterMap = [
     path: '/test',
     name: 'Test',
     component: () => import('@/components/test')
+  },
+  {
+    path: '/activeAccount',
+    name: 'ActivePage',
+    component: () => import('@/components/activePage')
   }
 ]
 export default new Router({
