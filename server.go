@@ -128,8 +128,8 @@ func ValidateTokenMiddleware(next http.HandlerFunc) http.HandlerFunc {
 }
 func SendSms(phone string){
 	// 第一步：请求参数
-	accessKeyId := "LTAIzYQhVdws2SX5";
-	accessKeySecret := "mju7qFeeZP4XhARdBvjbViYAX9Ka7o";
+	accessKeyId := "";
+	accessKeySecret := "";
 	paras := make(map[string]string)
 	// 系统参数
 	paras["SignatureMethod"]= "HMAC-SHA1"
@@ -195,7 +195,7 @@ func CheckEmail(email string) bool {
 
 }
 func SendEmail(email string, checkToken string) error {
-	auth := smtp.PlainAuth("", "customer@chelecom.io", "Vhsej5UMWBcZQcwf", "smtp.exmail.qq.com")
+	auth := smtp.PlainAuth("", "customer@chelecom.io", "", "smtp.exmail.qq.com")
 	to := []string{email}
 	nickname := "自由的空气"
 	user := "customer@chelecom.io"
