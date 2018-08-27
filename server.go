@@ -161,9 +161,9 @@ func SendSms(phone string){
 	}
 	stringToSign := fmt.Sprintf("GET&%s&%s", replace("/"), replace(sortQueryString[1:]))
 	
-	sign := Sign(accessKeySecret,stringToSign)
+	Signature := Sign(accessKeySecret,stringToSign)
 
-	apiUrl := fmt.Sprintf("http://dysmsapi.aliyuncs.com/?Signature=%s%s", sign, sortQueryString)
+	apiUrl := fmt.Sprintf("http://dysmsapi.aliyuncs.com/?Signature=%s%s", Signature, sortQueryString)
 
 	resp, err := http.Get(apiUrl)
 	if err != nil {
@@ -432,7 +432,7 @@ func main() {
 	http.HandleFunc("/active", ActiveAccount)
 	http.HandleFunc("/login", Login)
 	http.HandleFunc("/logout", Logout)
-	http.HandleFunc("/testDb", ValidateTokenMiddleware(TestDb))
+	http.HandleFunc("/test", ValidateTokenMiddleware(TestDb))
 	http.HandleFunc("/test", testFunc)
 	http.ListenAndServe(":9001", nil)
 }

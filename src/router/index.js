@@ -17,7 +17,10 @@ const constantRouterMap = [
   {
     path: '/test',
     name: 'Test',
-    component: () => import('@/components/test')
+    component: () => import('@/components/test'),
+    meta: {
+      requireAuth: true
+    }
   },
   {
     path: '/activeAccount',

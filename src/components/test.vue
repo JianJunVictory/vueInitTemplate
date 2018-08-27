@@ -40,14 +40,14 @@ export default {
       message: state => state.a.message,
       info: state => state.b.info
     })
-  },
-  mounted () {
-    let that = this
-    this.$store.dispatch('doTest').then(respData => {
-      that.testData = respData
-    }).catch(err => {
-      console.log(err)
-    })
   }
+  // mounted () {
+  //   let that = this
+  //   this.$store.dispatch('doTest').then(respData => {
+  //     that.testData = respData
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  // }
 }
 </script>
