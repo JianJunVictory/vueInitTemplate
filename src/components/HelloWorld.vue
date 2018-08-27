@@ -1,86 +1,22 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-         <router-link to="/test" replace>Test</router-link>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div>
+    <el-container>
+      <el-header><Header></Header></el-header>
+      <el-main>
+      <Slide></Slide>
+      <SkuList></SkuList>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
+import Slide from './slide'
+import Header from './header'
+import SkuList from './skulist'
 export default {
   name: 'HelloWorld',
+  components: {Slide, Header, SkuList},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -91,18 +27,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.el-menu-item {
+  padding: 0 5px !important;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.el-submenu__title {
+  padding:none !important;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.el-header {
+  padding: 0 0px;
 }
-a {
-  color: #42b983;
+.el-main {
+  margin-top: 11px;
 }
 </style>

@@ -78,6 +78,20 @@ const User = {
           reject(error)
         })
       })
+    },
+    doGetSkuList () {
+      return new Promise((resolve, reject) => {
+        UserApi.SkuList().then(response => {
+          if (response.data.code === 0) {
+            let resData = response.data.data
+            resolve(resData)
+          } else {
+            reject(response.data.message)
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   }
 }

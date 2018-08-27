@@ -53,9 +53,16 @@ function GetDB () {
     url: '/test'
   })
 }
+function GetSkuList () {
+  return axios({
+    method: 'POST',
+    url: '/getSkuList'
+  })
+}
 export default {
   Login: Login,
   Logout: Logout,
   Test: GetDB,
-  Active: Active
+  Active: Active,
+  SkuList: GetSkuList
 }
