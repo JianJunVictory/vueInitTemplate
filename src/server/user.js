@@ -27,6 +27,7 @@ axios.interceptors.response.use(response => {
   console.log('err' + error) // for debug
   return Promise.reject(error)
 })
+
 function Login (user) {
   return axios({
     method: 'POST',

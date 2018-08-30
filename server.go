@@ -20,6 +20,7 @@ import (
 	"time"
 	"math/rand"
 	"encoding/base64"
+	"context"
 )
 
 var db *sql.DB
@@ -104,7 +105,9 @@ func ValidateTokenMiddleware(next http.HandlerFunc) http.HandlerFunc {
 				if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 					idStr := fmt.Sprintf("%v", claims["id"])
 					req.Header.Set("uId", idStr)
-					next(w, req)
+					ctx :=context.WithValue(req.Context(),"uId",idStr)
+					req=req.WithContext(ctx)
+					next(w,req)
 				} else {
 					ResponseWithJson(w, http.StatusOK, Response{
 						Code:    -2001,
@@ -393,7 +396,7 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 }
 func TestDb(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		// uid := r.Header.Get("uId")
+		// uid := r.Context().Value("uId")
 		var godusers []Goduser
 		goduser := Goduser{}
 		stmt, _ := db.Prepare(`SELECT * From customer where AGE < ?`)
